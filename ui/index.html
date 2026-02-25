@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flashcard Studio</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Top Bar -->
+  <header id="topbar">
+    <div class="topbar-left">
+      <span class="app-title">Flashcard Studio</span>
+      <span id="deck-name" class="deck-name">Untitled Deck</span>
+      <span id="unsaved-dot" class="unsaved-dot hidden">●</span>
+    </div>
+    <div class="topbar-right">
+      <button id="btn-new" title="New Deck">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 3v10M3 8h10"/></svg>
+      </button>
+      <button id="btn-open" title="Open Deck">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 13V5l3-2h4l1 1h4v9H2z"/></svg>
+      </button>
+      <button id="btn-save" title="Save">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 14H4a1 1 0 01-1-1V3a1 1 0 011-1h6l3 3v8a1 1 0 01-1 1z"/><path d="M10 2v3h3M6 9h4"/></svg>
+      </button>
+      <button id="btn-saveas" title="Save As">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 14H4a1 1 0 01-1-1V3a1 1 0 011-1h6l3 3v8a1 1 0 01-1 1z"/><path d="M10 2v3h3"/><path d="M6 9h4M8 7v4"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Tab Navigation -->
+  <nav id="tabs">
+    <button class="tab active" data-view="generate">Generate</button>
+    <button class="tab" data-view="edit">Edit <span id="card-count" class="badge">0</span></button>
+    <button class="tab" data-view="study">Study</button>
+  </nav>
+
+  <!-- Generate View -->
+  <main id="view-generate" class="view active">
+    <div class="generate-container">
+      <label for="source-text">Paste your notes, textbook excerpt, or any study material:</label>
+      <textarea id="source-text" placeholder="Paste or type text here…" spellcheck="false"></textarea>
+      <div class="generate-actions">
+        <div class="model-select">
+          <label for="model-picker">Model:</label>
+          <select id="model-picker"><option value="mistral">mistral</option></select>
+          <button id="btn-refresh-models" class="icon-btn" title="Refresh models">↻</button>
+        </div>
+        <div class="generate-btns">
+          <button id="btn-generate" class="primary">Generate Flashcards</button>
+        </div>
+      </div>
+      <div id="generate-status" class="status-msg hidden"></div>
+    </div>
+  </main>
+
+  <!-- Edit View -->
+  <main id="view-edit" class="view">
+    <div class="edit-toolbar">
+      <input type="text" id="edit-deck-name" placeholder="Deck name…" />
+      <button id="btn-add-card" class="primary small">+ Add Card</button>
+    </div>
+    <div id="card-list" class="card-list">
+      <div class="empty-state">No flashcards yet. Generate some or add manually.</div>
+    </div>
+  </main>
+
+  <!-- Study View -->
+  <main id="view-study" class="view">
+    <div id="study-empty" class="empty-state">No cards to study. Generate or add some first.</div>
+    <div id="study-area" class="study-area hidden">
+      <div class="study-progress"><span id="study-counter">1 / 1</span></div>
+      <div id="study-card" class="study-card">
+        <div class="study-card-inner" id="study-card-inner">
+          <div class="study-card-front">
+            <span class="study-label">Question</span>
+            <p id="study-question"></p>
+          </div>
+          <div class="study-card-back">
+            <span class="study-label">Answer</span>
+            <p id="study-answer"></p>
+          </div>
+        </div>
+      </div>
+      <div class="study-controls">
+        <button id="btn-study-prev">← Previous</button>
+        <button id="btn-study-flip" class="primary">Flip</button>
+        <button id="btn-study-next">Next →</button>
+      </div>
+      <div class="study-options">
+        <label><input type="checkbox" id="shuffle-mode"> Shuffle</label>
+        <button id="btn-study-restart" class="small">Restart</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Status Bar -->
+  <footer id="statusbar">
+    <span id="ollama-status">
+      <span class="status-dot" id="ollama-dot"></span>
+      <span id="ollama-text">Checking Ollama…</span>
+    </span>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

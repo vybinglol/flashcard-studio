@@ -1,0 +1,20 @@
+{
+  "name": "flashcard-studio",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build:ui": "esbuild ui/app.js --bundle --outfile=dist/app.js --format=iife --minify && cp ui/index.html ui/style.css dist/",
+    "dev": "npm run build:ui && tauri dev",
+    "build": "npm run build:ui && tauri build",
+    "tauri": "tauri"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2",
+    "esbuild": "^0.24"
+  },
+  "dependencies": {
+    "@tauri-apps/api": "^2",
+    "@tauri-apps/plugin-dialog": "^2",
+    "@tauri-apps/plugin-fs": "^2"
+  }
+}

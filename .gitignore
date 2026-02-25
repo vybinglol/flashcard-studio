@@ -1,0 +1,27 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+src-tauri/target/
+
+# macOS
+.DS_Store
+*.dmg
+
+# Editor
+.vscode/
+*.swp
+*.swo
+*~
+
+# Environment
+.env
+.env.*
+
+# Logs
+*.log
+npm-debug.log*
+
+# Lock files (optional — some prefer to commit package-lock.json)
+# package-lock.json
